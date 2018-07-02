@@ -25,7 +25,7 @@ export default class FlashCard extends Component {
   render() {
     return (
       <form
-        className="form-group card col-6 mx-auto d-flex align-self-center p-3"
+        className="card border col-6 mx-auto d-flex align-self-center p-3"
         onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">Create a Flash Card</h5>
         <QuestionInput />
