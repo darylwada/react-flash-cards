@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import QuestionInput from './QuestionInput'
 
 export default class FlashCard extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class FlashCard extends Component {
   render() {
     return (
       <form className="form-group">
-
+        <QuestionInput />
       </form>
     )
   }
