@@ -1,0 +1,36 @@
+{
+  "name": "react-flash-cards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "browserify src/index.js -o src/main.js -t babelify",
+    "watch": "watchify -vd src/index.js -o src/main.js -t babelify & browser-sync start -s -c browser-sync.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darylwada/react-flash-cards.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.2",
+    "watchify": "^3.11.0",
+    "browser-sync": "2.24.5"
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "bugs": {
+    "url": "https://github.com/darylwada/react-flash-cards/issues"
+  },
+  "homepage": "https://github.com/darylwada/react-flash-cards#readme"
+}
