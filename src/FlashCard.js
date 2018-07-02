@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import QuestionInput from './QuestionInput'
+import AnswerInput from './AnswerInput'
 
 export default class FlashCard extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class FlashCard extends Component {
     return (
       <form className="form-group">
         <QuestionInput />
+        <AnswerInput />
       </form>
     )
   }
