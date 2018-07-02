@@ -9,7 +9,8 @@ export default class AnswerInput extends Component {
           type="text"
           className="form-control"
           id="answerInput"
-          placeholder="Example: 4"/>
+          placeholder="Example: 4"
+          name="answer"/>
       </div>
     )
   }

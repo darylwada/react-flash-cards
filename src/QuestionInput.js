@@ -9,7 +9,8 @@ export default class QuestionInput extends Component {
           type="text"
           className="form-control"
           id="questionInput"
-          placeholder="Example: What is 2 + 2?"/>
+          placeholder="Example: What is 2 + 2?"
+          name="question"/>
       </div>
     )
   }
