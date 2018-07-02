@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import FlashCard from './FlashCard.js'
 
 ReactDOM.render(
-  <div></div>,
+  <FlashCard />,
   document.querySelector('#app')
 )
