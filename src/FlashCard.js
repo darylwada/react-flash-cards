@@ -17,6 +17,7 @@ export default class FlashCard extends Component {
       <form className="form-group">
         <QuestionInput />
         <AnswerInput />
+        <button type="submit" className="btn btn-primary">Save</button>
       </form>
     )
   }
