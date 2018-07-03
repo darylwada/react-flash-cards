@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import Nav from './Nav'
 import NewCard from './NewCard'
-import Cards from './Cards'
+import CardList from './CardList'
+import CardListEmpty from './CardListEmpty'
 
 export default class App extends Component {
   constructor(props) {
@@ -30,11 +31,12 @@ export default class App extends Component {
   }
 
   renderCards() {
-    return <Cards currentCards={this.state.cards} />
+    return this.state.cards.length > 0
+      ? <CardList currentCards={this.state.cards} />
+      : <CardListEmpty />
   }
 
   renderView() {
-    console.log(this.state)
     if (this.state.path === 'new-card') return this.renderNewCard()
     if (this.state.path === 'cards') return this.renderCards()
   }

@@ -5,9 +5,7 @@ export default function Link({ text, path, isActive }) {
     ? 'nav-link active'
     : 'nav-link'
   return (
-    <a
-      className={className}
-      href={'#' + path}>
+    <a className={className} href={'#' + path}>
       {text}
     </a>
   )
