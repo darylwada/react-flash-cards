@@ -4,7 +4,6 @@ import Input from './Input'
 export default class NewCard extends Component {
   constructor(props) {
     super(props)
-    this.state = { cards: [] }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -16,9 +15,10 @@ export default class NewCard extends Component {
     for (let pair of formData.entries()) {
       newCard[pair[0]] = pair[1]
     }
-    const cards = [...this.state.cards, newCard]
+    const cards = [...this.props.currentCards, newCard]
 
-    this.setState({ cards: cards })
+    this.props.updateCardList(cards)
+    // this.setState({ cards: cards })
   }
 
   render() {

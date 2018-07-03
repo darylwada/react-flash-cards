@@ -10,6 +10,7 @@ export default class App extends Component {
       path: 'cards',
       cards: []
     }
+    this.updateCardList = this.updateCardList.bind(this)
   }
 
   componentDidMount() {
@@ -20,8 +21,12 @@ export default class App extends Component {
     })
   }
 
-  renderNewCard() {
+  updateCardList(cards) {
+    this.setState({ cards: cards })
+  }
 
+  renderNewCard() {
+    return <NewCard currentCards={this.state.cards} updateCardList={this.updateCardList}/>
   }
 
   renderCards() {
@@ -38,7 +43,7 @@ export default class App extends Component {
     return (
       <div className="container d-flex h-100">
         <Nav />
-
+        {this.renderView()}
       </div>
     )
   }
