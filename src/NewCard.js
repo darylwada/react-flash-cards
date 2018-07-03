@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import Input from './Input'
 
-export default class FlashCard extends Component {
+export default class NewCard extends Component {
   constructor(props) {
     super(props)
-    this.state = { cards: [] }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -16,16 +15,14 @@ export default class FlashCard extends Component {
     for (let pair of formData.entries()) {
       newCard[pair[0]] = pair[1]
     }
-    const cards = [...this.state.cards, newCard]
 
-    this.setState({ cards: cards })
+    this.props.updateCardList(newCard)
+    window.location.hash = 'cards'
   }
 
   render() {
     return (
-      <form
-        className="card border col-6 mx-auto d-flex align-self-center p-3"
-        onSubmit={this.handleSubmit}>
+      <form className="card border-0" onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">Create a Flash Card</h5>
         <Input label="Question" placeholder="Example: What is 2 + 2?" name="question" />
         <Input label="Answer" placeholder ="Example: 4" name="answer" />
