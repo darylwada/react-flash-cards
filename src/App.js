@@ -8,19 +8,17 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      path: 'cards',
+      path: window.location.hash.slice(1),
       cards: []
     }
     this.updateCardList = this.updateCardList.bind(this)
   }
 
   componentDidMount() {
-    location.hash = this.state.path
     window.addEventListener('hashchange', () => {
-      const path = location.hash.slice(1)
+      const path = window.location.hash.slice(1)
       this.setState({ path })
     })
-    window.dispatchEvent(new Event('hashchange'))
   }
 
   updateCardList(cards) {
@@ -38,8 +36,15 @@ export default class App extends Component {
   }
 
   renderView() {
-    if (this.state.path === 'new-card') return this.renderNewCard()
-    if (this.state.path === 'cards') return this.renderCards()
+    console.log(this.state)
+    switch (this.state.path) {
+      case 'new-card':
+        return this.renderNewCard()
+      case 'cards':
+        return this.renderCards()
+      default:
+        return this.renderCards()
+    }
   }
 
   render() {
