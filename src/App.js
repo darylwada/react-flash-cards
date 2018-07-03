@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Nav from './Nav'
 import CreateCard from './CreateCard'
 import CardList from './CardList'
+import * as queryString from './queryString'
 
 
 export default class App extends Component {
