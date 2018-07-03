@@ -51,7 +51,7 @@ export default class App extends Component {
   render() {
 
     return (
-      <div className="container d-flex h-100">
+      <div className="d-flex w-100">
         <Nav path={this.state.path}/>
         {this.renderView()}
       </div>

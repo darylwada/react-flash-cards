@@ -3,7 +3,7 @@ import Link from './Link'
 
 export default function Nav({ path }) {
   return (
-    <div className="row">
+    <nav className="navbar align-items-start">
       <ul className="nav nav-pills">
         <li className="nav-item">
           <Link text="Cards" path="cards" isActive={path === 'cards'} />
@@ -12,6 +12,6 @@ export default function Nav({ path }) {
           <Link text="New Card" path="new-card" isActive={path === 'new-card'} />
         </li>
       </ul>
-    </div>
+    </nav>
   )
 }
