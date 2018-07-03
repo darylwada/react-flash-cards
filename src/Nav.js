@@ -3,7 +3,7 @@ import Link from './Link'
 
 export default function Nav({ path }) {
   return (
-    <nav className="navbar align-items-start">
+    <nav className="navbar">
       <ul className="nav nav-pills">
         <li className="nav-item">
           <Link text="Cards" path="cards" isActive={path === 'cards'} />

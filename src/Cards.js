@@ -7,9 +7,6 @@ export default function Cards({ currentCards }) {
     ? <CardList currentCards={currentCards} />
     : <CardListEmpty />
 
-  return (
-    <div className="col-6 mx-auto d-flex align-self-center p-3">
-      {cardList}
-    </div>
-  )
+  return cardList
+
 }

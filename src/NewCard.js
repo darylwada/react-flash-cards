@@ -9,7 +9,7 @@ export default class NewCard extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
+    
     const formData = new FormData(event.target)
     const newCard = {}
     for (let pair of formData.entries()) {
@@ -18,14 +18,11 @@ export default class NewCard extends Component {
     const cards = [...this.props.currentCards, newCard]
 
     this.props.updateCardList(cards)
-    // this.setState({ cards: cards })
   }
 
   render() {
     return (
-      <form
-        className="card border col-6 mx-auto d-flex align-self-center p-3"
-        onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">Create a Flash Card</h5>
         <Input label="Question" placeholder="Example: What is 2 + 2?" name="question" />
         <Input label="Answer" placeholder ="Example: 4" name="answer" />
