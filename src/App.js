@@ -17,12 +17,19 @@ export default class App extends Component {
     this.navigate = this.navigate.bind(this)
   }
 
+  componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      const { path, params } = parseHash(window.location.hash)
+      this.setState({ path, params })
+    })
+  }
+
   navigate({ path, params }) {
     window.location.hash = path + queryString.stringify(params)
   }
 
   renderCreateCard() {
-
+    return <CreateCard />
   }
 
   renderCardList() {
@@ -30,13 +37,13 @@ export default class App extends Component {
   }
 
   renderView() {
-
+    if (this.state.path === 'createcard') return this.renderCreateCard()
   }
 
   render() {
     return (
       <div className="container d-flex h-100">
-
+      {this.renderView()}
       </div>
     )
   }
