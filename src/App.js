@@ -44,7 +44,7 @@ export default class App extends Component {
     console.log(this.state)
     return (
       <div className="container d-flex h-100">
-        <Nav />
+        <Nav path={this.state.path}/>
         {this.renderView()}
       </div>
     )
