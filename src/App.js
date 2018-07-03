@@ -52,10 +52,8 @@ export default class App extends Component {
     return (
       <Fragment>
         <Nav path={this.state.path}/>
-        <div className="jumbotron jumbotron-fluid">
-          <div className="card flashcard col-6 mx-auto my-5 p-3">
+          <div className="card fixed-width mx-auto my-5 p-3">
             {this.renderView()}
-          </div>
         </div>
       </Fragment>
     )
