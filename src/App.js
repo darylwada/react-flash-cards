@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
 import NewCard from './NewCard'
-// import Cards from './Cards'
+import Cards from './Cards'
 
 export default class App extends Component {
   constructor(props) {
@@ -19,6 +19,8 @@ export default class App extends Component {
       const path = hash.slice(1)
       this.setState({ path })
     })
+
+    window.dispatchEvent(new Event('hashchange'))
   }
 
   updateCardList(cards) {
@@ -26,11 +28,11 @@ export default class App extends Component {
   }
 
   renderNewCard() {
-    return <NewCard currentCards={this.state.cards} updateCardList={this.updateCardList}/>
+    return <NewCard currentCards={this.state.cards} updateCardList={this.updateCardList} />
   }
 
   renderCards() {
-
+    return <Cards currentCards={this.state.cards} />
   }
 
   renderView() {
