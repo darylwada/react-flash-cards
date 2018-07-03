@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Input from './Input'
 
-export default class CreateCard extends Component {
+export default class NewCard extends Component {
   constructor(props) {
     super(props)
     this.state = { cards: [] }

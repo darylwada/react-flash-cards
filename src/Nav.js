@@ -7,14 +7,14 @@ export default function Nav(props) {
         <li className="nav-item">
           <a
             className='nav-link'
-            href={'#flashcards?page=cards'}>
+            href={'#cards'}>
             Cards
           </a>
         </li>
         <li className="nav-item">
           <a
             className='nav-link'
-            href={'#flashcards?page=new'}>
+            href={'#new-card'}>
             New
           </a>
         </li>

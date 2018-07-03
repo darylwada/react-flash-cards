@@ -1,53 +1,43 @@
 import React, { Component } from 'react'
 import Nav from './Nav'
-import CreateCard from './CreateCard'
-import CardList from './CardList'
-import parseHash from './parseHash'
-import * as queryString from './queryString'
-
+import NewCard from './NewCard'
+// import Cards from './Cards'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      path: 'flashcards',
-      params: {page: 'cards'},
+      path: 'cards',
       cards: []
     }
-    this.navigate = this.navigate.bind(this)
   }
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash
-      const split = hash.split('?')
-      const path = split[0].slice(1)
-      const params = queryString.parse(split[1])
-      this.setState({ path, params })
+      const path = hash.slice(1)
+      this.setState({ path })
     })
   }
 
-  navigate({ path, params }) {
-    window.location.hash = path + queryString.stringify(params)
+  renderNewCard() {
+
   }
 
-  renderCreateCard() {
-    return <CreateCard />
-  }
-
-  renderCardList() {
+  renderCards() {
 
   }
 
   renderView() {
-    if (this.state.path === 'createcard') return this.renderCreateCard()
+    if (this.state.path === 'new-card') return this.renderNewCard()
+    if (this.state.path === 'cards') return this.renderCards()
   }
 
   render() {
     console.log(this.state)
     return (
       <div className="container d-flex h-100">
-        <Nav page={this.state.params}/>
+        <Nav />
 
       </div>
     )
