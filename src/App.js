@@ -19,6 +19,12 @@ export default class App extends Component {
       const path = window.location.hash.slice(1)
       this.setState({ path })
     })
+
+    window.addEventListener('beforeunload', () => {
+      for (let key in this.state) {
+        localStorage.setItem(key, JSON.stringify(this.state[key]))
+      }
+    })
   }
 
   updateCardList(newCard) {
