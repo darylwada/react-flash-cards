@@ -17,11 +17,12 @@ export default class NewCard extends Component {
     }
 
     this.props.updateCardList(newCard)
+    window.location.hash = 'cards'
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="card border-0" onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">Create a Flash Card</h5>
         <Input label="Question" placeholder="Example: What is 2 + 2?" name="question" />
         <Input label="Answer" placeholder ="Example: 4" name="answer" />
