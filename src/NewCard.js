@@ -9,15 +9,14 @@ export default class NewCard extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    
+
     const formData = new FormData(event.target)
     const newCard = {}
     for (let pair of formData.entries()) {
       newCard[pair[0]] = pair[1]
     }
-    const cards = [...this.props.currentCards, newCard]
 
-    this.props.updateCardList(cards)
+    this.props.updateCardList(newCard)
   }
 
   render() {

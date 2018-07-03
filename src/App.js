@@ -21,7 +21,8 @@ export default class App extends Component {
     })
   }
 
-  updateCardList(cards) {
+  updateCardList(newCard) {
+    const cards = [...this.state.cards, newCard]
     this.setState({ cards: cards })
   }
 
