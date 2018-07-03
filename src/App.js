@@ -2,24 +2,27 @@ import React, { Component } from 'react'
 import Nav from './Nav'
 import CreateCard from './CreateCard'
 import CardList from './CardList'
+import parseHash from './parseHash'
 import * as queryString from './queryString'
 
 
 export default class App extends Component {
   constructor(props) {
     super(props)
-    const { path, params } = parseHash(location.hash)
     this.state = {
-      path,
-      params,
-      cards = []
+      path: 'flashcards',
+      params: {page: 'cards'},
+      cards: []
     }
     this.navigate = this.navigate.bind(this)
   }
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
-      const { path, params } = parseHash(window.location.hash)
+      const hash = window.location.hash
+      const split = hash.split('?')
+      const path = split[0].slice(1)
+      const params = queryString.parse(split[1])
       this.setState({ path, params })
     })
   }
@@ -41,9 +44,11 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="container d-flex h-100">
-      {this.renderView()}
+        <Nav page={this.state.params}/>
+
       </div>
     )
   }
