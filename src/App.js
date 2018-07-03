@@ -15,6 +15,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    location.hash = this.state.path
     window.addEventListener('hashchange', () => {
       const path = location.hash.slice(1)
       this.setState({ path })
