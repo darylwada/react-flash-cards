@@ -25,6 +25,11 @@ export default class App extends Component {
         localStorage.setItem(key, JSON.stringify(this.state[key]))
       }
     })
+
+    this.setState({
+      path: localStorage.path,
+      cards: JSON.parse(localStorage.cards)
+    })
   }
 
   updateCardList(newCard) {
