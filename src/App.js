@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Nav from './Nav'
-import NewCard from './NewCard'
+import Form from './Form'
 import CardList from './CardList'
 import CardListEdit from './CardListEdit'
 import CardListEmpty from './CardListEmpty'
@@ -16,7 +16,8 @@ export default class App extends Component {
       params: params,
       cards: JSON.parse(cards) || []
     }
-    this.updateCardList = this.updateCardList.bind(this)
+    this.addNewCard = this.addNewCard.bind(this)
+    this.editCard = this.editCard.bind(this)
   }
 
   componentDidMount() {
@@ -30,31 +31,33 @@ export default class App extends Component {
     })
   }
 
-  updateCardList(newCard, editIndex) {
-    let cards = []
-    if (editIndex) {
-      cards = this.state.cards.map((card, index) => {
-        if (index === editIndex) return newCard
-        return card
-      })
-    }
-    else {
-      cards = [...this.state.cards, newCard]
-    }
+  addNewCard(newCard) {
+    const cards = [...this.state.cards, newCard]
     this.setState({ cards: cards })
   }
 
-  renderNewCard() {
-    return <NewCard currentCards={this.state.cards} updateCardList={this.updateCardList} />
+  editCard(newCard, editIndex) {
+    const cards = this.state.cards.map((card, index) => {
+      if (index === editIndex) return newCard
+      return card
+    })
+    this.setState({ cards: cards })
+  }
+
+  renderForm(type) {
+    const editIndex = parseInt(this.state.params.cardId, 10) - 1
+    return <Form
+      type={type}
+      editIndex={editIndex}
+      details={this.state.cards[editIndex] || ''}
+      currentCards={this.state.cards}
+      addNewCard={this.addNewCard}
+      editCard={this.editCard} />
   }
 
   renderCards() {
     if (Object.keys(this.state.params).length > 0) {
-      const editIndex = parseInt(this.state.params.cardId, 10) - 1
-      return <CardListEdit
-        index={editIndex}
-        details={this.state.cards[editIndex]}
-        updateCardList={this.updateCardList} />
+      return this.renderForm('edit')
     }
     else {
       return this.state.cards.length > 0
@@ -67,7 +70,7 @@ export default class App extends Component {
     console.log(this.state)
     switch (this.state.path) {
       case 'new-card':
-        return this.renderNewCard()
+        return this.renderForm('new')
       case 'cards':
         return this.renderCards()
       default:
