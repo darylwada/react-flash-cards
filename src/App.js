@@ -44,13 +44,10 @@ export default class App extends Component {
   }
 
   renderForm(type) {
-    const editIndex = parseInt(this.state.params.cardId, 10) - 1
-    const cardDetails = this.state.cards[editIndex] || {}
     return <Form
       type={type}
-      editIndex={editIndex}
-      cardDetails={cardDetails}
-      currentCards={this.state.cards}
+      params={this.state.params}
+      cardList={this.state.cards}
       addToCardList={this.addToCardList}
       editCardList={this.editCardList} />
   }

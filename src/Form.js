@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Input from './Input'
 import getFormData from './getFormData'
 
 export default class Form extends Component {
@@ -11,7 +10,8 @@ export default class Form extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const newCard = getFormData(event.target)
-    const { type, addToCardList, editCardList, editIndex } = this.props
+    const { type, addToCardList, editCardList, params } = this.props
+    const editIndex = parseInt(params.cardId, 10) - 1
 
     switch (type) {
       case 'new':
@@ -26,17 +26,33 @@ export default class Form extends Component {
   }
 
   render() {
-    const { type } = this.props
-    const { question, answer } = this.props.cardDetails
+    const { type, params, questionText, answerText, cardList } = this.props
+    const editIndex = parseInt(params.cardId, 10) - 1
+    const cardDetails = cardList[editIndex]
+    const { question, answer } = cardDetails || { question: '', answer: '' }
     const header = type === 'new'
       ? 'Create a Flash Card'
       : 'Edit a Flash Card'
 
     return (
-      <form className="card border-0" onSubmit={this.handleSubmit}>
+      <form className="card border-0" key={type} onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">{header}</h5>
-        <Input label="Question" value={question} name="question" />
-        <Input label="Answer" value={answer} name="answer" />
+        <div className="form-group my-3">
+          <label>Question</label>
+          <input
+            type="text"
+            className="form-control"
+            defaultValue={question}
+            name='question' />
+        </div>
+        <div className="form-group my-3">
+          <label>Answer</label>
+          <input
+            type="text"
+            className="form-control"
+            defaultValue={answer}
+            name='answer' />
+        </div>
         <button type="submit" className="btn btn-primary mx-auto my-3">Save</button>
       </form>
     )

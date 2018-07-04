@@ -1,7 +1,7 @@
 import React from 'react'
 import * as queryString from './query-string'
 
-export default function Cards({ currentCards, params }) {
+export default function CardList({ currentCards, params }) {
   return (
     <ul className="list-group card border-0 w-100">
       {
