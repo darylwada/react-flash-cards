@@ -23,9 +23,9 @@ export default class NewCard extends Component {
   render() {
     return (
       <form className="card border-0" onSubmit={this.handleSubmit}>
-        <h5 className="card-title text-center">Create a Flash Card</h5>
-        <Input label="Question" placeholder="Example: What is 2 + 2?" name="question" />
-        <Input label="Answer" placeholder ="Example: 4" name="answer" />
+        <h5 className="card-title text-center">Edit a Flash Card</h5>
+        <Input label="Question" value={this.props.details.question} name="question" />
+        <Input label="Answer" value={this.props.details.answer} name="answer" />
         <button type="submit" className="btn btn-primary mx-auto my-3">Save</button>
       </form>
     )

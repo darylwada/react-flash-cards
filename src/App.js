@@ -41,7 +41,9 @@ export default class App extends Component {
 
   renderCards() {
     if (Object.keys(this.state.params).length > 0) {
-      return <CardListEdit />
+      const editIndex = parseInt(this.state.params.cardId, 10) - 1
+      console.log(editIndex)
+      return <CardListEdit details={this.state.cards[editIndex]}/>
     }
     if (Object.keys(this.state.params).length === 0) {
       return this.state.cards.length > 0
