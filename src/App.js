@@ -11,12 +11,12 @@ export default class App extends Component {
     const { path, params } = parseHash(window.location.hash)
     const cards = localStorage.getItem('cards')
     this.state = {
-      path: path,
-      params: params,
+      path,
+      params,
       cards: JSON.parse(cards) || []
     }
-    this.addNewCard = this.addNewCard.bind(this)
-    this.editCard = this.editCard.bind(this)
+    this.addToCardList = this.addToCardList.bind(this)
+    this.editCardList = this.editCardList.bind(this)
   }
 
   componentDidMount() {
@@ -30,17 +30,17 @@ export default class App extends Component {
     })
   }
 
-  addNewCard(newCard) {
+  addToCardList(newCard) {
     const cards = [...this.state.cards, newCard]
-    this.setState({ cards: cards })
+    this.setState({ cards })
   }
 
-  editCard(newCard, editIndex) {
+  editCardList(newCard, editIndex) {
     const cards = this.state.cards.map((card, index) => {
       if (index === editIndex) return newCard
       return card
     })
-    this.setState({ cards: cards })
+    this.setState({ cards })
   }
 
   renderForm(type) {
@@ -51,8 +51,8 @@ export default class App extends Component {
       editIndex={editIndex}
       cardDetails={cardDetails}
       currentCards={this.state.cards}
-      addNewCard={this.addNewCard}
-      editCard={this.editCard} />
+      addToCardList={this.addToCardList}
+      editCardList={this.editCardList} />
   }
 
   renderCards() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Input from './Input'
+import getFormData from './getFormData'
 
 export default class Form extends Component {
   constructor(props) {
@@ -9,31 +10,33 @@ export default class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    const newCard = getFormData(event.target)
+    const { type, addToCardList, editCardList, editIndex } = this.props
 
-    const formData = new FormData(event.target)
-    const newCard = {}
-    for (let pair of formData.entries()) {
-      newCard[pair[0]] = pair[1]
+    switch (type) {
+      case 'new':
+        addToCardList(newCard)
+        break
+      case 'edit':
+        editCardList(newCard, editIndex)
+        break
     }
 
-    if (this.props.type === 'new') this.props.addNewCard(newCard)
-    else this.props.editCard(newCard, this.props.editIndex)
     window.location.hash = 'cards'
   }
 
   render() {
-    const header = this.props.type === 'new'
+    const { type } = this.props
+    const { question, answer } = this.props.cardDetails
+    const header = type === 'new'
       ? 'Create a Flash Card'
       : 'Edit a Flash Card'
-
-    const questionValue = this.props.cardDetails.question
-    const answerValue = this.props.cardDetails.answer
 
     return (
       <form className="card border-0" onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">{header}</h5>
-        <Input label="Question" value={questionValue} name="question" />
-        <Input label="Answer" value={answerValue} name="answer" />
+        <Input label="Question" value={question} name="question" />
+        <Input label="Answer" value={answer} name="answer" />
         <button type="submit" className="btn btn-primary mx-auto my-3">Save</button>
       </form>
     )
