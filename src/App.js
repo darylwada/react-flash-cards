@@ -2,14 +2,18 @@ import React, { Component, Fragment } from 'react'
 import Nav from './Nav'
 import NewCard from './NewCard'
 import CardList from './CardList'
+import CardListEdit from './CardListEdit'
 import CardListEmpty from './CardListEmpty'
+import parseHash from './parse-hash'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
+    const { path, params } = parseHash(window.location.hash)
     const cards = localStorage.getItem('cards')
     this.state = {
-      path: window.location.hash.slice(1),
+      path: path,
+      params: params,
       cards: JSON.parse(cards) || []
     }
     this.updateCardList = this.updateCardList.bind(this)
@@ -17,8 +21,8 @@ export default class App extends Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', () => {
-      const path = window.location.hash.slice(1)
-      this.setState({ path })
+      const { path, params } = parseHash(window.location.hash)
+      this.setState({ path, params })
     })
 
     window.addEventListener('beforeunload', () => {
@@ -36,9 +40,14 @@ export default class App extends Component {
   }
 
   renderCards() {
-    return this.state.cards.length > 0
-      ? <CardList currentCards={this.state.cards} />
-      : <CardListEmpty />
+    if (Object.keys(this.state.params).length > 0) {
+      return <CardListEdit />
+    }
+    if (Object.keys(this.state.params).length === 0) {
+      return this.state.cards.length > 0
+        ? <CardList currentCards={this.state.cards} />
+        : <CardListEmpty />
+    }
   }
 
   renderView() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Input from './Input'
 
-export default class CardListEdit extends Component {
+export default class NewCard extends Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
