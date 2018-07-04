@@ -15,7 +15,7 @@ export default class NewCard extends Component {
     for (let pair of formData.entries()) {
       newCard[pair[0]] = pair[1]
     }
-    console.log('this.props.index: ' + this.props.index);
+
     this.props.updateCardList(newCard, this.props.index)
     window.location.hash = 'cards'
   }

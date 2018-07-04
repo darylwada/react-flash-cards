@@ -30,11 +30,11 @@ export default class App extends Component {
     })
   }
 
-  updateCardList(newCard, index) {
+  updateCardList(newCard, editIndex) {
     let cards = []
-    if (index) {
-      cards = this.state.cards.map((card, i) => {
-        if (i === index) return newCard
+    if (editIndex) {
+      cards = this.state.cards.map((card, index) => {
+        if (index === editIndex) return newCard
         return card
       })
     }
@@ -51,13 +51,12 @@ export default class App extends Component {
   renderCards() {
     if (Object.keys(this.state.params).length > 0) {
       const editIndex = parseInt(this.state.params.cardId, 10) - 1
-      console.log(editIndex)
       return <CardListEdit
         index={editIndex}
         details={this.state.cards[editIndex]}
         updateCardList={this.updateCardList} />
     }
-    if (Object.keys(this.state.params).length === 0) {
+    else {
       return this.state.cards.length > 0
         ? <CardList currentCards={this.state.cards} />
         : <CardListEmpty />
