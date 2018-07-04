@@ -11,7 +11,6 @@ export default class App extends Component {
     this.state = {
       path: window.location.hash.slice(1),
       cards: JSON.parse(cards) || []
-
     }
     this.updateCardList = this.updateCardList.bind(this)
   }
