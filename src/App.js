@@ -79,7 +79,7 @@ export default class App extends Component {
     return (
       <Fragment>
         <Nav path={this.state.path}/>
-          <div className="card fixed-width mx-auto my-5 p-3">
+          <div className="card fixed-width mx-auto my-5 p-3 shadow-sm">
             {this.renderView()}
         </div>
       </Fragment>
