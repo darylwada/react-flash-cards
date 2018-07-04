@@ -7,9 +7,10 @@ import CardListEmpty from './CardListEmpty'
 export default class App extends Component {
   constructor(props) {
     super(props)
+    const cards = localStorage.getItem('cards')
     this.state = {
       path: window.location.hash.slice(1),
-      cards: []
+      cards: JSON.parse(cards) || []
     }
     this.updateCardList = this.updateCardList.bind(this)
   }
@@ -18,6 +19,10 @@ export default class App extends Component {
     window.addEventListener('hashchange', () => {
       const path = window.location.hash.slice(1)
       this.setState({ path })
+    })
+
+    window.addEventListener('beforeunload', () => {
+      localStorage.setItem('cards', JSON.stringify(this.state.cards))
     })
   }
 
