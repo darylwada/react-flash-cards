@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import Nav from './Nav'
 import Form from './Form'
 import CardList from './CardList'
-import CardListEdit from './CardListEdit'
 import CardListEmpty from './CardListEmpty'
 import parseHash from './parse-hash'
 
@@ -46,24 +45,22 @@ export default class App extends Component {
 
   renderForm(type) {
     const editIndex = parseInt(this.state.params.cardId, 10) - 1
+    const cardDetails = this.state.cards[editIndex] || {}
     return <Form
       type={type}
       editIndex={editIndex}
-      details={this.state.cards[editIndex] || ''}
+      cardDetails={cardDetails}
       currentCards={this.state.cards}
       addNewCard={this.addNewCard}
       editCard={this.editCard} />
   }
 
   renderCards() {
-    if (Object.keys(this.state.params).length > 0) {
-      return this.renderForm('edit')
-    }
-    else {
-      return this.state.cards.length > 0
-        ? <CardList currentCards={this.state.cards} />
-        : <CardListEmpty />
-    }
+    if (Object.keys(this.state.params).length) return this.renderForm('edit')
+
+    return this.state.cards.length > 0
+      ? <CardList currentCards={this.state.cards} />
+      : <CardListEmpty />
   }
 
   renderView() {

@@ -25,12 +25,9 @@ export default class Form extends Component {
     const header = this.props.type === 'new'
       ? 'Create a Flash Card'
       : 'Edit a Flash Card'
-    let questionValue = ''
-    let answerValue = ''
-    if (this.props.type === 'edit') {
-      questionValue = this.props.details.question
-      answerValue = this.props.details.answer
-    }
+
+    const questionValue = this.props.cardDetails.question
+    const answerValue = this.props.cardDetails.answer
 
     return (
       <form className="card border-0" onSubmit={this.handleSubmit}>
