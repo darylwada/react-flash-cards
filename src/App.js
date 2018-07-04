@@ -7,9 +7,11 @@ import CardListEmpty from './CardListEmpty'
 export default class App extends Component {
   constructor(props) {
     super(props)
+    const cards = localStorage.getItem('cards')
     this.state = {
       path: window.location.hash.slice(1),
-      cards: []
+      cards: JSON.parse(cards) || []
+
     }
     this.updateCardList = this.updateCardList.bind(this)
   }
@@ -21,14 +23,7 @@ export default class App extends Component {
     })
 
     window.addEventListener('beforeunload', () => {
-      for (let key in this.state) {
-        localStorage.setItem(key, JSON.stringify(this.state[key]))
-      }
-    })
-
-    this.setState({
-      path: localStorage.path,
-      cards: JSON.parse(localStorage.cards)
+      localStorage.setItem('cards', JSON.stringify(this.state.cards))
     })
   }
 
