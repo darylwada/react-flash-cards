@@ -11,6 +11,9 @@ export default function Nav({ path }) {
         <li className="nav-item">
           <Link text="New Card" path="new-card" isActive={path === 'new-card'} />
         </li>
+        <li className="nav-item">
+          <Link text="Practice" path="practice" isActive={path === 'practice'} />
+        </li>
       </ul>
     </nav>
   )
