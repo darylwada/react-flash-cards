@@ -26,7 +26,7 @@ export default class Form extends Component {
   }
 
   render() {
-    const { type, params, questionText, answerText, cardList } = this.props
+    const { type, params, cardList } = this.props
     const editIndex = parseInt(params.cardId, 10) - 1
     const cardDetails = cardList[editIndex]
     const { question, answer } = cardDetails || { question: '', answer: '' }

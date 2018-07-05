@@ -61,7 +61,6 @@ export default class App extends Component {
   }
 
   renderView() {
-    console.log(this.state)
     switch (this.state.path) {
       case 'new-card':
         return this.renderForm('new')
