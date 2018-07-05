@@ -15,11 +15,13 @@ export default class App extends Component {
       path,
       params,
       cards: JSON.parse(cards) || [],
-      practiceCardIndex: 0
+      practiceCardIndex: 0,
+      answerVisible: false
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
     this.handleCarouselControl = this.handleCarouselControl.bind(this)
+    this.handleAnswerVisible = this.handleAnswerVisible.bind(this)
   }
 
   componentDidMount() {
@@ -63,6 +65,10 @@ export default class App extends Component {
     this.setState({ practiceCardIndex: index })
   }
 
+  handleAnswerVisible() {
+    this.setState({ answerVisible: !this.state.answerVisible })
+  }
+
   renderForm() {
     const { cards, params } = this.state
     const editIndex = parseInt(params.cardIdx, 10) - 1
@@ -86,7 +92,9 @@ export default class App extends Component {
       cardListLength={this.state.cards.length}
       handleCarouselControl={this.handleCarouselControl}
       practiceCardIndex={this.state.practiceCardIndex}
-      practiceCard={this.state.cards[this.state.practiceCardIndex]} />
+      practiceCard={this.state.cards[this.state.practiceCardIndex]}
+      answerVisible={this.state.answerVisible}
+      handleAnswerVisible={this.handleAnswerVisible} />
   }
 
   renderView() {

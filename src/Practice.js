@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import CarouselItems from './CarouselItems'
-import CarouselControls from './CarouselControls'
 
 export default class Carousel extends Component {
   constructor(props) {
@@ -19,13 +18,19 @@ export default class Carousel extends Component {
   }
 
   render() {
-    const { practiceCardIndex, practiceCard } = this.props
+    const { practiceCard, answerVisible, handleAnswerVisible } = this.props
     return (
       <div className="carousel" onClick={this.handleClick}>
         <CarouselItems
           practiceCard={practiceCard}
-          currentIndex={practiceCardIndex} />
-        <CarouselControls />
+          answerVisible={answerVisible}
+          handleAnswerVisible={handleAnswerVisible} />
+        <a id="prev" className="carousel-control-prev btn">
+          <i className="fas fa-chevron-left"></i>
+        </a>
+        <a id="next" className="carousel-control-next btn">
+          <i className="fas fa-chevron-right"></i>
+        </a>
       </div>
     )
   }
