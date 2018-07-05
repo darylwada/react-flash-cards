@@ -13,7 +13,10 @@ export default function CardList({ currentCards, params }) {
               <p className="card-body mb-0">{card.answer}</p>
               <div className="row no-gutters justify-content-end">
                 <a href={'#cards' + query}>
-                  <i className="fas fa-edit"></i>
+                  <i className="fas fa-edit mr-2"></i>
+                </a>
+                <a href="#cards">
+                  <i className="far fa-trash-alt"></i>
                 </a>
               </div>
             </li>
