@@ -3,6 +3,7 @@ import Nav from './Nav'
 import Form from './Form'
 import CardList from './CardList'
 import CardListEmpty from './CardListEmpty'
+import Practice from './Practice'
 import parseHash from './parse-hash'
 
 export default class App extends Component {
@@ -13,10 +14,12 @@ export default class App extends Component {
     this.state = {
       path,
       params,
-      cards: JSON.parse(cards) || []
+      cards: JSON.parse(cards) || [],
+      practiceCardIndex: 0
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
+    this.handleCarouselControl = this.handleCarouselControl.bind(this)
   }
 
   componentDidMount() {
@@ -56,6 +59,10 @@ export default class App extends Component {
       : this.addCard(newCard)
   }
 
+  handleCarouselControl(index) {
+    this.setState({ practiceCardIndex: index })
+  }
+
   renderForm() {
     const { cards, params } = this.state
     const editIndex = parseInt(params.cardIdx, 10) - 1
@@ -74,12 +81,23 @@ export default class App extends Component {
       : <CardListEmpty />
   }
 
+  renderPractice() {
+    return <Practice
+      cardListLength={this.state.cards.length}
+      handleCarouselControl={this.handleCarouselControl}
+      practiceCardIndex={this.state.practiceCardIndex}
+      practiceCard={this.state.cards[this.state.practiceCardIndex]} />
+  }
+
   renderView() {
+    console.log(this.state)
     switch (this.state.path) {
       case 'new-card':
         return this.renderForm()
       case 'cards':
         return this.renderCards()
+      case 'practice':
+        return this.renderPractice()
       default:
         return this.renderCards()
     }
