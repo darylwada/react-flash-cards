@@ -15,7 +15,7 @@ export default class App extends Component {
       params,
       cards: JSON.parse(cards) || []
     }
-    this.updateCardList = this.updateCardList.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
   }
 
@@ -29,17 +29,19 @@ export default class App extends Component {
     })
   }
 
-  addNewCard(newCard) {
-    return [...this.state.cards, newCard]
+  addCard(newCard) {
+    const cards = [...this.state.cards, newCard]
+    this.setState({ cards })
   }
 
   editCard(newCard) {
     const { params } = this.state
     const editIndex = parseInt(params.cardIdx, 10) - 1
-    return this.state.cards.map((card, index) => {
+    const cards = this.state.cards.map((card, index) => {
       if (index === editIndex) return newCard
       return card
     })
+    this.setState({ cards })
   }
 
   deleteCard(deleteIndex) {
@@ -48,22 +50,10 @@ export default class App extends Component {
     this.setState({ cards })
   }
 
-  updateCardList(newCard) {
-    const { params } = this.state
-    const cards = params.hasOwnProperty('cardIdx')
+  handleFormSubmit(newCard) {
+    this.state.params.hasOwnProperty('cardIdx')
       ? this.editCard(newCard)
-      : this.addNewCard(newCard)
-    // let cards = []
-    // if (params.hasOwnProperty('cardIdx')) {
-    //   cards = this.editCard(newCard)
-    // }
-    // else if (path === 'new-card') {
-    //   this.addNewCard(newCard)
-    // }
-    // else {
-    //   cards = this.deleteCard(newCard)
-    // }
-    this.setState({ cards })
+      : this.addCard(newCard)
   }
 
   renderForm() {
@@ -72,15 +62,15 @@ export default class App extends Component {
     const cardToEdit = cards[editIndex] || null
     return <Form
       cardToEdit={cardToEdit}
-      updateCardList={this.updateCardList} />
+      handleFormSubmit={this.handleFormSubmit} />
   }
 
   renderCards() {
     if (this.state.params.cardIdx) return this.renderForm()
     return this.state.cards.length > 0
       ? <CardList
-          currentCards={this.state.cards}
-          deleteCard={this.deleteCard} />
+        currentCards={this.state.cards}
+        deleteCard={this.deleteCard} />
       : <CardListEmpty />
   }
 
