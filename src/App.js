@@ -16,6 +16,7 @@ export default class App extends Component {
       cards: JSON.parse(cards) || []
     }
     this.updateCardList = this.updateCardList.bind(this)
+    this.deleteCard = this.deleteCard.bind(this)
   }
 
   componentDidMount() {
@@ -44,7 +45,7 @@ export default class App extends Component {
   deleteCard(deleteIndex) {
     const cards = [...this.state.cards]
     cards.splice(deleteIndex, 1)
-    return cards
+    this.setState({ cards })
   }
 
   updateCardList(newCard) {
@@ -77,7 +78,9 @@ export default class App extends Component {
   renderCards() {
     if (this.state.params.cardIdx) return this.renderForm()
     return this.state.cards.length > 0
-      ? <CardList currentCards={this.state.cards} />
+      ? <CardList
+          currentCards={this.state.cards}
+          deleteCard={this.deleteCard} />
       : <CardListEmpty />
   }
 
