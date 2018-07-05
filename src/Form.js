@@ -10,32 +10,25 @@ export default class Form extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const newCard = getFormData(event.target)
-    const { type, addToCardList, editCardList, params } = this.props
-    const editIndex = parseInt(params.cardIdx, 10) - 1
-
-    switch (type) {
-      case 'new':
-        addToCardList(newCard)
-        break
-      case 'edit':
-        editCardList(newCard, editIndex)
-        break
-    }
-
+    const { updateCardList } = this.props
+    updateCardList(newCard)
     window.location.hash = 'cards'
   }
 
   render() {
-    const { type, params, cardList } = this.props
-    const editIndex = parseInt(params.cardIdx, 10) - 1
-    const cardDetails = cardList[editIndex]
-    const { question, answer } = cardDetails || { question: '', answer: '' }
-    const header = type === 'new'
-      ? 'Create a Flash Card'
-      : 'Edit a Flash Card'
+    const { cardToEdit } = this.props
+    let question = ''
+    let answer = ''
+    if (cardToEdit) {
+      question = cardToEdit.question
+      answer = cardToEdit.answer
+    }
+    const header = cardToEdit
+      ? 'Edit a Flash Card'
+      : 'Create a Flash Card'
 
     return (
-      <form className="card border-0" key={type} onSubmit={this.handleSubmit}>
+      <form className="card border-0" key={header} onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">{header}</h5>
         <div className="form-group my-3">
           <label htmlFor="question">Question</label>

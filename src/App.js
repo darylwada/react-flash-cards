@@ -15,8 +15,7 @@ export default class App extends Component {
       params,
       cards: JSON.parse(cards) || []
     }
-    this.addToCardList = this.addToCardList.bind(this)
-    this.editCardList = this.editCardList.bind(this)
+    this.updateCardList = this.updateCardList.bind(this)
   }
 
   componentDidMount() {
@@ -31,30 +30,37 @@ export default class App extends Component {
   }
 
   addToCardList(newCard) {
-    const cards = [...this.state.cards, newCard]
-    this.setState({ cards })
+    return [...this.state.cards, newCard]
   }
 
-  editCardList(newCard, editIndex) {
-    const cards = this.state.cards.map((card, index) => {
+  editCardList(newCard) {
+    const editIndex = parseInt(params.cardIdx, 10) - 1
+    return this.state.cards.map((card, index) => {
       if (index === editIndex) return newCard
       return card
     })
+  }
+
+  updateCardList(newCard) {
+    const { params } = this.state
+    const cards = params.hasOwnProperty('cardIdx')
+      ? this.editCardList(newCard)
+      : this.addToCardList(newCard)
+
     this.setState({ cards })
   }
 
-  renderForm(type) {
+  renderForm() {
+    const { cards, params } = this.state
+    const editIndex = parseInt(params.cardIdx, 10) - 1
+    const cardToEdit = cards[editIndex] || null
     return <Form
-      type={type}
-      params={this.state.params}
-      cardList={this.state.cards}
-      addToCardList={this.addToCardList}
-      editCardList={this.editCardList} />
+      cardToEdit={cardToEdit}
+      updateCardList={this.updateCardList} />
   }
 
   renderCards() {
-    if (this.state.params.cardIdx) return this.renderForm('edit')
-
+    if (this.state.params.cardIdx) return this.renderForm()
     return this.state.cards.length > 0
       ? <CardList currentCards={this.state.cards} />
       : <CardListEmpty />
@@ -63,7 +69,7 @@ export default class App extends Component {
   renderView() {
     switch (this.state.path) {
       case 'new-card':
-        return this.renderForm('new')
+        return this.renderForm()
       case 'cards':
         return this.renderCards()
       default:
