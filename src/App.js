@@ -53,7 +53,7 @@ export default class App extends Component {
   }
 
   renderCards() {
-    if (this.state.params.cardId) return this.renderForm('edit')
+    if (this.state.params.cardIdx) return this.renderForm('edit')
 
     return this.state.cards.length > 0
       ? <CardList currentCards={this.state.cards} />

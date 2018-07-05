@@ -11,7 +11,7 @@ export default class Form extends Component {
     event.preventDefault()
     const newCard = getFormData(event.target)
     const { type, addToCardList, editCardList, params } = this.props
-    const editIndex = parseInt(params.cardId, 10) - 1
+    const editIndex = parseInt(params.cardIdx, 10) - 1
 
     switch (type) {
       case 'new':
@@ -27,7 +27,7 @@ export default class Form extends Component {
 
   render() {
     const { type, params, cardList } = this.props
-    const editIndex = parseInt(params.cardId, 10) - 1
+    const editIndex = parseInt(params.cardIdx, 10) - 1
     const cardDetails = cardList[editIndex]
     const { question, answer } = cardDetails || { question: '', answer: '' }
     const header = type === 'new'

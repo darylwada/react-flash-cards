@@ -6,7 +6,7 @@ export default function CardList({ currentCards, params }) {
     <ul className="list-group card border-0 w-100">
       {
         currentCards.map((card, index) => {
-          const query = queryString.stringify({ 'cardId': index + 1 })
+          const query = queryString.stringify({ 'cardIdx': index + 1 })
           return (
             <li className="list-group-item" key={index}>
               <h5 className="card-title">{card.question}</h5>
