@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-export default function Cards() {
+export default function CardListEmpty() {
   return (
     <Fragment>
       <h5 className="card-title text-center my-3">You have no flash cards.</h5>
