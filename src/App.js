@@ -15,7 +15,8 @@ export default class App extends Component {
       params,
       cards: JSON.parse(cards) || []
     }
-    this.updateCardList = this.updateCardList.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.deleteCard = this.deleteCard.bind(this)
   }
 
   componentDidMount() {
@@ -28,25 +29,31 @@ export default class App extends Component {
     })
   }
 
-  addNewCard(newCard) {
-    return [...this.state.cards, newCard]
+  addCard(newCard) {
+    const cards = [...this.state.cards, newCard]
+    this.setState({ cards })
   }
 
   editCard(newCard) {
     const { params } = this.state
     const editIndex = parseInt(params.cardIdx, 10) - 1
-    return this.state.cards.map((card, index) => {
+    const cards = this.state.cards.map((card, index) => {
       if (index === editIndex) return newCard
       return card
     })
+    this.setState({ cards })
   }
 
-  updateCardList(newCard) {
-    const { params } = this.state
-    const cards = params.hasOwnProperty('cardIdx')
-      ? this.editCard(newCard)
-      : this.addNewCard(newCard)
+  deleteCard(deleteIndex) {
+    const cards = [...this.state.cards]
+    cards.splice(deleteIndex, 1)
     this.setState({ cards })
+  }
+
+  handleFormSubmit(newCard) {
+    this.state.params.hasOwnProperty('cardIdx')
+      ? this.editCard(newCard)
+      : this.addCard(newCard)
   }
 
   renderForm() {
@@ -55,13 +62,15 @@ export default class App extends Component {
     const cardToEdit = cards[editIndex] || null
     return <Form
       cardToEdit={cardToEdit}
-      updateCardList={this.updateCardList} />
+      handleFormSubmit={this.handleFormSubmit} />
   }
 
   renderCards() {
     if (this.state.params.cardIdx) return this.renderForm()
     return this.state.cards.length > 0
-      ? <CardList currentCards={this.state.cards} />
+      ? <CardList
+        currentCards={this.state.cards}
+        deleteCard={this.deleteCard} />
       : <CardListEmpty />
   }
 

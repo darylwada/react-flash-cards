@@ -10,7 +10,7 @@ export default class Form extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const newCard = getFormData(event.target)
-    this.props.updateCardList(newCard)
+    this.props.handleFormSubmit(newCard)
     window.location.hash = 'cards'
   }
 
