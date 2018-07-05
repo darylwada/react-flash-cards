@@ -38,16 +38,18 @@ export default class Form extends Component {
       <form className="card border-0" key={type} onSubmit={this.handleSubmit}>
         <h5 className="card-title text-center">{header}</h5>
         <div className="form-group my-3">
-          <label>Question</label>
+          <label htmlFor="question">Question</label>
           <input
+            id="question"
             type="text"
             className="form-control"
             defaultValue={question}
             name='question' />
         </div>
         <div className="form-group my-3">
-          <label>Answer</label>
+          <label htmlFor="answer">Answer</label>
           <input
+            id="answer"
             type="text"
             className="form-control"
             defaultValue={answer}
