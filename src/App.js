@@ -23,17 +23,17 @@ export default class App extends Component {
       const { path, params } = parseHash(window.location.hash)
       this.setState({ path, params })
     })
-
     window.addEventListener('beforeunload', () => {
       localStorage.setItem('cards', JSON.stringify(this.state.cards))
     })
   }
 
-  addToCardList(newCard) {
+  addNewCard(newCard) {
     return [...this.state.cards, newCard]
   }
 
-  editCardList(newCard) {
+  editCard(newCard) {
+    const { params } = this.state
     const editIndex = parseInt(params.cardIdx, 10) - 1
     return this.state.cards.map((card, index) => {
       if (index === editIndex) return newCard
@@ -44,9 +44,8 @@ export default class App extends Component {
   updateCardList(newCard) {
     const { params } = this.state
     const cards = params.hasOwnProperty('cardIdx')
-      ? this.editCardList(newCard)
-      : this.addToCardList(newCard)
-
+      ? this.editCard(newCard)
+      : this.addNewCard(newCard)
     this.setState({ cards })
   }
 
@@ -81,8 +80,8 @@ export default class App extends Component {
     return (
       <Fragment>
         <Nav path={this.state.path}/>
-          <div className="card fixed-width mx-auto my-5 p-3 shadow-sm">
-            {this.renderView()}
+        <div className="card fixed-width mx-auto my-5 p-3 shadow-sm">
+          {this.renderView()}
         </div>
       </Fragment>
     )

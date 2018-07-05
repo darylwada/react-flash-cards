@@ -10,19 +10,13 @@ export default class Form extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const newCard = getFormData(event.target)
-    const { updateCardList } = this.props
-    updateCardList(newCard)
+    this.props.updateCardList(newCard)
     window.location.hash = 'cards'
   }
 
   render() {
     const { cardToEdit } = this.props
-    let question = ''
-    let answer = ''
-    if (cardToEdit) {
-      question = cardToEdit.question
-      answer = cardToEdit.answer
-    }
+    const { question, answer } = cardToEdit || { question: '', answer: '' }
     const header = cardToEdit
       ? 'Edit a Flash Card'
       : 'Create a Flash Card'
