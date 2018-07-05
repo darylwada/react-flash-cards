@@ -41,11 +41,27 @@ export default class App extends Component {
     })
   }
 
+  deleteCard(deleteIndex) {
+    const cards = [...this.state.cards]
+    cards.splice(deleteIndex, 1)
+    return cards
+  }
+
   updateCardList(newCard) {
     const { params } = this.state
     const cards = params.hasOwnProperty('cardIdx')
       ? this.editCard(newCard)
       : this.addNewCard(newCard)
+    // let cards = []
+    // if (params.hasOwnProperty('cardIdx')) {
+    //   cards = this.editCard(newCard)
+    // }
+    // else if (path === 'new-card') {
+    //   this.addNewCard(newCard)
+    // }
+    // else {
+    //   cards = this.deleteCard(newCard)
+    // }
     this.setState({ cards })
   }
 
