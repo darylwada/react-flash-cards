@@ -4,18 +4,42 @@ import CarouselCards from './CarouselCards'
 export default class Carousel extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      practiceIndex: 0,
+      showAnswer: false
+    }
     this.handleClick = this.handleClick.bind(this)
   }
 
+  toggleShowAnswer() {
+    const showAnswer = !this.state.showAnswer
+    this.setState({ showAnswer })
+  }
+
+  handleCarouselControls(control) {
+    const { cardList } = this.props
+    let { practiceIndex, showAnswer } = this.state
+    if (control === 'next' && practiceIndex < cardList.length - 1) {
+      practiceIndex++
+      showAnswer = false
+    }
+    if (control === 'prev' && practiceIndex > 0) {
+      practiceIndex--
+      showAnswer = false
+    }
+    this.setState({ practiceIndex, showAnswer })
+  }
+
   handleClick(event) {
-    const { handleCarouselControls, toggleShowAnswer } = this.props
     const $target = event.target.closest('.btn')
-    if ($target.id === 'next' || $target.id === 'prev') handleCarouselControls($target.id)
-    if ($target.id === 'show-answer') toggleShowAnswer()
+    if ($target.id === 'next' || $target.id === 'prev') this.handleCarouselControls($target.id)
+    if ($target.id === 'show-answer') this.toggleShowAnswer()
   }
 
   render() {
-    const { practiceCard, showAnswer } = this.props
+    const { cardList } = this.props
+    const { practiceIndex, showAnswer } = this.state
+    const practiceCard = cardList[practiceIndex]
     return (
       <div className="carousel fixed-width-900 mx-auto" onClick={this.handleClick}>
         <CarouselCards
