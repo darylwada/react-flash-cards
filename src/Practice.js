@@ -6,7 +6,8 @@ export default class Carousel extends Component {
     super(props)
     this.state = {
       practiceIndex: 0,
-      showAnswer: false
+      showAnswer: false,
+      transition: null
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -22,12 +23,15 @@ export default class Carousel extends Component {
     if (control === 'next' && practiceIndex < cardList.length - 1) {
       practiceIndex++
       showAnswer = false
+      this.setState({ transition: 'forward' })
+      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'afterForward' }), 100)
     }
     if (control === 'prev' && practiceIndex > 0) {
       practiceIndex--
       showAnswer = false
+      this.setState({ transition: 'backward' })
+      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'afterBackward' }), 100)
     }
-    this.setState({ practiceIndex, showAnswer })
   }
 
   handleClick(event) {
@@ -37,8 +41,9 @@ export default class Carousel extends Component {
   }
 
   render() {
+    console.log(this.state)
     const { cardList } = this.props
-    const { practiceIndex, showAnswer } = this.state
+    const { practiceIndex, showAnswer, transition } = this.state
     const practiceCard = cardList[practiceIndex]
     const progress = `${(practiceIndex + 1) / cardList.length * 100}%`
 
@@ -47,10 +52,11 @@ export default class Carousel extends Component {
         <div className="progress fixed-width-700 bg-white border shadow-sm mx-auto mb-4">
           <div className="progress-bar" style={{ width: progress }}></div>
         </div>
-        <div className="carousel fixed-width-900 mx-auto" onClick={this.handleClick}>
+        <div className="carousel fixed-width-900 mx-auto" key={progress} onClick={this.handleClick}>
           <CarouselCards
             practiceCard={practiceCard}
-            showAnswer={showAnswer} />
+            showAnswer={showAnswer}
+            transition={transition} />
           <a id="prev" className="carousel-control-prev fixed-width-100 btn">
             <i className="fas fa-chevron-left"></i>
           </a>

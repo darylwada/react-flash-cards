@@ -13,3 +13,75 @@ body {
 .fixed-width-100 {
   width: 100px;
 }
+
+@keyframes slideInForward {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.slideInForward {
+  animation-duration: 0.1s;
+  animation-name: slideInForward;
+}
+
+@keyframes slideInBackward {
+  from {
+    margin-left: -100%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.slideInBackward {
+  animation-duration: 0.1s;
+  animation-name: slideInBackward;
+}
+
+@keyframes slideOutForward {
+  from {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  to {
+    margin-left: -100%;
+    width: 100%;
+  }
+}
+
+.slideOutForward {
+  animation-duration: 0.1s;
+  animation-name: slideOutForward;
+}
+
+@keyframes slideOutBackward {
+  from {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 100%;
+    width: 100%;
+  }
+}
+
+.slideOutBackward {
+  animation-duration: 0.1s;
+  animation-name: slideOutBackward;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
