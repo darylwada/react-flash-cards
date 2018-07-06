@@ -22,28 +22,30 @@ export default class Form extends Component {
       : 'Create a Flash Card'
 
     return (
-      <form className="card border-0" key={header} onSubmit={this.handleSubmit}>
-        <h5 className="card-title text-center">{header}</h5>
-        <div className="form-group my-3">
-          <label htmlFor="question">Question</label>
-          <input
-            id="question"
-            type="text"
-            className="form-control"
-            defaultValue={question}
-            name='question' />
-        </div>
-        <div className="form-group my-3">
-          <label htmlFor="answer">Answer</label>
-          <input
-            id="answer"
-            type="text"
-            className="form-control"
-            defaultValue={answer}
-            name='answer' />
-        </div>
-        <button type="submit" className="btn btn-primary mx-auto my-3">Save</button>
-      </form>
+      <div className="card fixed-width-700 mx-auto my-5 p-3 shadow-sm">
+        <form className="card border-0" key={header} onSubmit={this.handleSubmit}>
+          <h5 className="card-title text-center">{header}</h5>
+          <div className="form-group my-3">
+            <label htmlFor="question">Question</label>
+            <input
+              id="question"
+              type="text"
+              className="form-control"
+              defaultValue={question}
+              name='question' />
+          </div>
+          <div className="form-group my-3">
+            <label htmlFor="answer">Answer</label>
+            <input
+              id="answer"
+              type="text"
+              className="form-control"
+              defaultValue={answer}
+              name='answer' />
+          </div>
+          <button type="submit" className="btn btn-primary mx-auto my-3">Save</button>
+        </form>
+      </div>
     )
   }
 }

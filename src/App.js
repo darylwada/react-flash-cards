@@ -3,6 +3,7 @@ import Nav from './Nav'
 import Form from './Form'
 import CardList from './CardList'
 import CardListEmpty from './CardListEmpty'
+import Practice from './Practice'
 import parseHash from './parse-hash'
 
 export default class App extends Component {
@@ -74,12 +75,18 @@ export default class App extends Component {
       : <CardListEmpty />
   }
 
+  renderPractice() {
+    return <Practice cardList={this.state.cards} />
+  }
+
   renderView() {
     switch (this.state.path) {
       case 'new-card':
         return this.renderForm()
       case 'cards':
         return this.renderCards()
+      case 'practice':
+        return this.renderPractice()
       default:
         return this.renderCards()
     }
@@ -89,9 +96,7 @@ export default class App extends Component {
     return (
       <Fragment>
         <Nav path={this.state.path}/>
-        <div className="card fixed-width mx-auto my-5 p-3 shadow-sm">
-          {this.renderView()}
-        </div>
+        {this.renderView()}
       </Fragment>
     )
   }
