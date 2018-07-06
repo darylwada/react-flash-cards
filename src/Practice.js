@@ -40,10 +40,13 @@ export default class Carousel extends Component {
     const { cardList } = this.props
     const { practiceIndex, showAnswer } = this.state
     const practiceCard = cardList[practiceIndex]
-    const progress = (practiceIndex + 1) / cardList.length * 100
+    const progress = `${(practiceIndex + 1) / cardList.length * 100}%`
 
     return (
       <Fragment>
+        <div className="progress fixed-width-700 bg-white border shadow-sm mx-auto mb-4">
+          <div className="progress-bar" style={{ width: progress }}></div>
+        </div>
         <div className="carousel fixed-width-900 mx-auto" onClick={this.handleClick}>
           <CarouselCards
             practiceCard={practiceCard}
@@ -54,9 +57,6 @@ export default class Carousel extends Component {
           <a id="next" className="carousel-control-next fixed-width-100 btn">
             <i className="fas fa-chevron-right"></i>
           </a>
-        </div>
-        <div className="progress fixed-width-700 border border-secondary mx-auto mt-5">
-          <div className="progress-bar" style={{ width: progress + '%' }}></div>
         </div>
       </Fragment>
     )
