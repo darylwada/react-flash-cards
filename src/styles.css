@@ -2,6 +2,14 @@ body {
   background-color: rgb(233, 236, 239);
 }
 
-.fixed-width {
+.fixed-width-900 {
+  width: 900px;
+}
+
+.fixed-width-700 {
   width: 700px;
+}
+
+.fixed-width-100 {
+  width: 100px;
 }

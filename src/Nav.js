@@ -3,8 +3,8 @@ import Link from './Link'
 
 export default function Nav({ path }) {
   return (
-    <nav className="navbar bg-white border-bottom shadow-sm">
-      <ul className="nav nav-pills mx-auto fixed-width">
+    <nav className="navbar bg-white border-bottom shadow-sm mb-5">
+      <ul className="nav nav-pills mx-auto fixed-width-700">
         <li className="nav-item">
           <Link text="Cards" path="cards" isActive={path === 'cards'} />
         </li>

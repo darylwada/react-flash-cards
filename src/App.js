@@ -20,8 +20,7 @@ export default class App extends Component {
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
-    this.handleCarouselControl = this.handleCarouselControl.bind(this)
-    this.handleAnswerVisible = this.handleAnswerVisible.bind(this)
+    this.handlePracticeClicks = this.handlePracticeClicks.bind(this)
   }
 
   componentDidMount() {
@@ -61,12 +60,8 @@ export default class App extends Component {
       : this.addCard(newCard)
   }
 
-  handleCarouselControl(index) {
-    this.setState({ practiceCardIndex: index })
-  }
-
-  handleAnswerVisible() {
-    this.setState({ answerVisible: !this.state.answerVisible })
+  handlePracticeClicks(index, showAnswer) {
+    this.setState({ practiceCardIndex: index, answerVisible: showAnswer })
   }
 
   renderForm() {
@@ -90,15 +85,13 @@ export default class App extends Component {
   renderPractice() {
     return <Practice
       cardListLength={this.state.cards.length}
-      handleCarouselControl={this.handleCarouselControl}
       practiceCardIndex={this.state.practiceCardIndex}
       practiceCard={this.state.cards[this.state.practiceCardIndex]}
       answerVisible={this.state.answerVisible}
-      handleAnswerVisible={this.handleAnswerVisible} />
+      handlePracticeClicks={this.handlePracticeClicks} />
   }
 
   renderView() {
-    console.log(this.state)
     switch (this.state.path) {
       case 'new-card':
         return this.renderForm()
@@ -115,9 +108,7 @@ export default class App extends Component {
     return (
       <Fragment>
         <Nav path={this.state.path}/>
-        <div className="card fixed-width mx-auto my-5 p-3 shadow-sm">
-          {this.renderView()}
-        </div>
+        {this.renderView()}
       </Fragment>
     )
   }
