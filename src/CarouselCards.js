@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function CarouselCards({ practiceCard, answerVisible }) {
-  const [ visibility, icon ] = answerVisible
+export default function CarouselCards({ practiceCard, showAnswer }) {
+  const [ visibility, icon ] = showAnswer
     ? [ 'visible', 'fas fa-chevron-circle-down' ]
     : [ 'd-none', 'fas fa-chevron-circle-right' ]
   return (

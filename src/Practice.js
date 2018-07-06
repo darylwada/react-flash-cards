@@ -8,29 +8,19 @@ export default class Carousel extends Component {
   }
 
   handleClick(event) {
-    const { cardListLength, practiceCardIndex, handlePracticeClicks } = this.props
-    let currentIndex = practiceCardIndex
-    let { answerVisible } = this.props
+    const { handleCarouselControls, toggleShowAnswer } = this.props
     const $target = event.target.closest('.btn')
-    if ($target.id === 'next' && currentIndex < cardListLength - 1) {
-      currentIndex++
-      answerVisible = false
-    }
-    if ($target.id === 'prev' && currentIndex > 0) {
-      currentIndex--
-      answerVisible = false
-    }
-    if ($target.id === 'show-answer') answerVisible = !answerVisible
-    handlePracticeClicks(currentIndex, answerVisible)
+    if ($target.id === 'next' || $target.id === 'prev') handleCarouselControls($target.id)
+    if ($target.id === 'show-answer') toggleShowAnswer()
   }
 
   render() {
-    const { practiceCard, answerVisible } = this.props
+    const { practiceCard, showAnswer } = this.props
     return (
       <div className="carousel fixed-width-900 mx-auto" onClick={this.handleClick}>
         <CarouselCards
           practiceCard={practiceCard}
-          answerVisible={answerVisible} />
+          showAnswer={showAnswer} />
         <a id="prev" className="carousel-control-prev fixed-width-100 btn">
           <i className="fas fa-chevron-left"></i>
         </a>

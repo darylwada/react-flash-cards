@@ -15,12 +15,13 @@ export default class App extends Component {
       path,
       params,
       cards: JSON.parse(cards) || [],
-      practiceCardIndex: 0,
-      answerVisible: false
+      practiceIndex: 0,
+      showAnswer: false
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
-    this.handlePracticeClicks = this.handlePracticeClicks.bind(this)
+    this.toggleShowAnswer = this.toggleShowAnswer.bind(this)
+    this.handleCarouselControls = this.handleCarouselControls.bind(this)
   }
 
   componentDidMount() {
@@ -60,8 +61,23 @@ export default class App extends Component {
       : this.addCard(newCard)
   }
 
-  handlePracticeClicks(index, showAnswer) {
-    this.setState({ practiceCardIndex: index, answerVisible: showAnswer })
+  toggleShowAnswer() {
+    const showAnswer = !this.state.showAnswer
+    this.setState({ showAnswer })
+  }
+
+  handleCarouselControls(control) {
+    const { cards } = this.state
+    let { practiceIndex, showAnswer } = this.state
+    if (control === 'next' && practiceIndex < cards.length - 1) {
+      practiceIndex++
+      showAnswer = false
+    }
+    if (control === 'prev' && practiceIndex > 0) {
+      practiceIndex--
+      showAnswer = false
+    }
+    this.setState({ practiceIndex, showAnswer })
   }
 
   renderForm() {
@@ -83,12 +99,12 @@ export default class App extends Component {
   }
 
   renderPractice() {
+    const { cards, practiceIndex, showAnswer } = this.state
     return <Practice
-      cardListLength={this.state.cards.length}
-      practiceCardIndex={this.state.practiceCardIndex}
-      practiceCard={this.state.cards[this.state.practiceCardIndex]}
-      answerVisible={this.state.answerVisible}
-      handlePracticeClicks={this.handlePracticeClicks} />
+      practiceCard={cards[practiceIndex]}
+      showAnswer={showAnswer}
+      toggleShowAnswer={this.toggleShowAnswer}
+      handleCarouselControls={this.handleCarouselControls} />
   }
 
   renderView() {
