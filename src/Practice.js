@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import CarouselCards from './CarouselCards'
 
 export default class Carousel extends Component {
@@ -40,18 +40,24 @@ export default class Carousel extends Component {
     const { cardList } = this.props
     const { practiceIndex, showAnswer } = this.state
     const practiceCard = cardList[practiceIndex]
+
     return (
-      <div className="carousel fixed-width-900 mx-auto" onClick={this.handleClick}>
-        <CarouselCards
-          practiceCard={practiceCard}
-          showAnswer={showAnswer} />
-        <a id="prev" className="carousel-control-prev fixed-width-100 btn">
-          <i className="fas fa-chevron-left"></i>
-        </a>
-        <a id="next" className="carousel-control-next fixed-width-100 btn">
-          <i className="fas fa-chevron-right"></i>
-        </a>
-      </div>
+      <Fragment>
+        <div className="carousel fixed-width-900 mx-auto" onClick={this.handleClick}>
+          <CarouselCards
+            practiceCard={practiceCard}
+            showAnswer={showAnswer} />
+          <a id="prev" className="carousel-control-prev fixed-width-100 btn">
+            <i className="fas fa-chevron-left"></i>
+          </a>
+          <a id="next" className="carousel-control-next fixed-width-100 btn">
+            <i className="fas fa-chevron-right"></i>
+          </a>
+        </div>
+        <div className="progress fixed-width-700 border border-secondary mx-auto mt-5">
+          <div className="progress-bar" ></div>
+        </div>
+      </Fragment>
     )
   }
 }
