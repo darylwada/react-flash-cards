@@ -23,14 +23,14 @@ export default class Carousel extends Component {
     if (control === 'next' && practiceIndex < cardList.length - 1) {
       practiceIndex++
       showAnswer = false
-      this.setState({ transition: 'forward' })
-      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'afterForward' }), 100)
+      this.setState({ transition: 'transition-next' })
+      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'next' }), 500)
     }
     if (control === 'prev' && practiceIndex > 0) {
       practiceIndex--
       showAnswer = false
-      this.setState({ transition: 'backward' })
-      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'afterBackward' }), 100)
+      this.setState({ transition: 'transition-prev' })
+      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'prev' }), 500)
     }
   }
 
@@ -53,15 +53,17 @@ export default class Carousel extends Component {
           <div className="progress-bar" style={{ width: progress }}></div>
         </div>
         <div className="carousel fixed-width-900 mx-auto" key={progress} onClick={this.handleClick}>
-          <CarouselCards
-            practiceCard={practiceCard}
-            showAnswer={showAnswer}
-            transition={transition} />
+          <div className="fixed-width-700 mx-auto overflow-hidden">
+            <CarouselCards
+              practiceCard={practiceCard}
+              showAnswer={showAnswer}
+              transition={transition} />
+          </div>
           <a id="prev" className="carousel-control-prev fixed-width-100 btn">
-            <i className="fas fa-chevron-left"></i>
+            <i className="fas fa-chevron-left" />
           </a>
           <a id="next" className="carousel-control-next fixed-width-100 btn">
-            <i className="fas fa-chevron-right"></i>
+            <i className="fas fa-chevron-right" />
           </a>
         </div>
       </Fragment>

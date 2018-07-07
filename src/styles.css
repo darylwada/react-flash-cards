@@ -14,7 +14,7 @@ body {
   width: 100px;
 }
 
-@keyframes slideInForward {
+@keyframes slideInLeft {
   from {
     margin-left: 100%;
     width: 100%;
@@ -26,12 +26,12 @@ body {
   }
 }
 
-.slideInForward {
-  animation-duration: 0.1s;
-  animation-name: slideInForward;
+.slideInLeft {
+  animation-duration: 0.55s;
+  animation-name: slideInLeft;
 }
 
-@keyframes slideInBackward {
+@keyframes slideInRight {
   from {
     margin-left: -100%;
     width: 100%;
@@ -43,12 +43,12 @@ body {
   }
 }
 
-.slideInBackward {
-  animation-duration: 0.1s;
-  animation-name: slideInBackward;
+.slideInRight {
+  animation-duration: 0.55s;
+  animation-name: slideInRight;
 }
 
-@keyframes slideOutForward {
+@keyframes slideOutLeft {
   from {
     margin-left: 0;
     width: 100%;
@@ -60,12 +60,12 @@ body {
   }
 }
 
-.slideOutForward {
-  animation-duration: 0.1s;
-  animation-name: slideOutForward;
+.slideOutLeft {
+  animation-duration: 0.55s;
+  animation-name: slideOutLeft;
 }
 
-@keyframes slideOutBackward {
+@keyframes slideOutRight {
   from {
     margin-left: 0;
     width: 100%;
@@ -77,9 +77,9 @@ body {
   }
 }
 
-.slideOutBackward {
-  animation-duration: 0.1s;
-  animation-name: slideOutBackward;
+.slideOutRight {
+  animation-duration: 0.55s;
+  animation-name: slideOutRight;
 }
 
 .overflow-hidden {
