@@ -3,8 +3,8 @@ import setTransitionAnimation from './setTransitionAnimation'
 
 export default function CarouselCards({ practiceCard, showAnswer, transition }) {
   const [ visibility, icon ] = showAnswer
-    ? [ 'visible', 'fas fa-chevron-circle-down' ]
-    : [ 'd-none', 'fas fa-chevron-circle-right' ]
+    ? [ 'visible', 'fas fa-chevron-circle-right rotate down' ]
+    : [ 'd-none', 'fas fa-chevron-circle-right rotate' ]
   const animationClass = setTransitionAnimation(transition)
   console.log(animationClass)
   return (
