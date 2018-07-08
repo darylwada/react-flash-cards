@@ -8,7 +8,7 @@ export default function CarouselCards({ practiceCard, showAnswer, transition }) 
   const animationClass = setTransitionAnimation(transition)
   console.log(animationClass)
   return (
-    <div className={'card p-3 shadow-sm' + animationClass}>
+    <div className={'card p-3' + animationClass}>
       <h5 className="card-title">{practiceCard.question}</h5>
       <div id="show-answer" className="btn text-left mb-3">
         <i className={icon + ' mr-3'} /><span>Show Answer</span>

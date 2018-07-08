@@ -16,12 +16,12 @@ body {
 
 @keyframes slideInLeft {
   from {
-    margin-left: 100%;
+    transform: translateX(100vw);
     width: 100%;
   }
 
   to {
-    margin-left: 0%;
+    transform: translateX(0);
     width: 100%;
   }
 }
@@ -33,12 +33,12 @@ body {
 
 @keyframes slideInRight {
   from {
-    margin-left: -100%;
+    transform: translateX(-100vw);
     width: 100%;
   }
 
   to {
-    margin-left: 0%;
+    transform: translateX(0);
     width: 100%;
   }
 }
@@ -50,12 +50,12 @@ body {
 
 @keyframes slideOutLeft {
   from {
-    margin-left: 0;
+    transform: translateX(0);
     width: 100%;
   }
 
   to {
-    margin-left: -200%;
+    transform: translateX(-100vw);
     width: 100%;
   }
 }
@@ -67,12 +67,12 @@ body {
 
 @keyframes slideOutRight {
   from {
-    margin-left: 0;
+    transform: translateX(0);
     width: 100%;
   }
 
   to {
-    margin-left: 100%;
+    transform: translateX(100vw);
     width: 100%;
   }
 }
@@ -80,6 +80,23 @@ body {
 .slideOutRight {
   animation-duration: 0.55s;
   animation-name: slideOutRight;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(120px);
+    /* width: 100%; */
+  }
+
+  to {
+    transform: translateY(0);
+    /* width: 100%; */
+  }
+}
+
+.slideUp {
+  animation-duration: 0.55s;
+  animation-name: slideUp;
 }
 
 .overflow-hidden {

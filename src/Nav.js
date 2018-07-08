@@ -5,7 +5,7 @@ export default function Nav({ path }) {
   return (
     <nav className="navbar bg-white border-bottom shadow-sm mb-5">
       <div className="fixed-width-700 mx-auto">
-        <a className="navbar-brand" href="#"><i className="fas fa-book-open mr-2" />Quiz Me</a>
+        <a className="navbar-brand" href="#cards"><i className="fas fa-book-open mr-2" />Quiz Me</a>
         <ul className="nav nav-pills d-inline-flex">
           <li className="nav-item">
             <Link text="Cards" path="cards" isActive={path === 'cards'} />

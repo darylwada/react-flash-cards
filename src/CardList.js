@@ -13,21 +13,25 @@ export default class CardList extends Component {
     const deleteIndex = parseInt(target.getAttribute('data-index'), 10)
     this.setState({ transition: 'deleting', deleteIndex })
     setTimeout(() => deleteCard(deleteIndex), 500)
-    setTimeout(() => this.setState({ deleteIndex: null }), 500)
+    setTimeout(() => this.setState({ transition: null }), 500)
   }
 
   render() {
+    console.log(this.state)
     const { currentCards } = this.props
     return (
       <ul className="list-group fixed-width-700 mx-auto">
         {
           currentCards.map((card, index) => {
             const query = queryString.stringify({ 'cardIdx': index + 1 })
-            const deleteClass = index === this.state.deleteIndex
+            const deleteClass = index === this.state.deleteIndex && this.state.transition
               ? ' slideOutLeft'
               : ''
+            const slideClass = index >= this.state.deleteIndex && !this.state.transition && this.state.deleteIndex !== null
+              ? ' slideUp'
+              : ''
             return (
-              <li className={'list-group-item mb-3 shadow-sm' + deleteClass} key={index}>
+              <li className={'list-group-item mb-3 shadow-sm' + deleteClass + slideClass} key={index}>
                 <h5 className="card-title">{card.question}</h5>
                 <p className="card-body m-0 py-0">{card.answer}</p>
                 <div className="row no-gutters justify-content-end">
