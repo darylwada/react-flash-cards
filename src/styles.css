@@ -87,13 +87,22 @@ body {
 }
 
 .rotate{
-  /* -moz-transition: all 0.2s linear; */
-  /* -webkit-transition: all 0.2s linear; */
   transition: all 0.2s linear;
 }
 
 .rotate.down{
-  /* -moz-transform:rotate(90deg); */
-  /* -webkit-transform:rotate(90deg); */
   transform:rotate(90deg);
+}
+
+.wrap {	
+  overflow: hidden; 
+}
+
+.inner {	                   
+  margin-top: -100%;
+  transition: margin-top 0.5s ease;
+}
+
+.inner.open { 
+  margin-top: 0px;
 }

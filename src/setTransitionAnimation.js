@@ -11,4 +11,5 @@ export default function setTransitionAnimation(transition) {
   if (transition === 'prev') {
     return ' slideInRight'
   }
+  return ''
 }
