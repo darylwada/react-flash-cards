@@ -1,15 +1,15 @@
 export default function setTransitionAnimation(transition) {
   if (transition === 'transition-next') {
-    return ' slideOutLeft'
+    return ' slide slideOutLeft'
   }
   if (transition === 'next') {
-    return ' slideInLeft'
+    return ' slide slideInLeft'
   }
   if (transition === 'transition-prev') {
-    return ' slideOutRight'
+    return ' slide slideOutRight'
   }
   if (transition === 'prev') {
-    return ' slideInRight'
+    return ' slide slideInRight'
   }
   return ''
 }

@@ -47,7 +47,7 @@ body {
   animation-duration: 0.55s;
   animation-name: slideInRight;
 }
-
+/*
 @keyframes slideOutLeft {
   from {
     transform: translateX(0);
@@ -86,18 +86,38 @@ body {
   from {
     transform: translateY(120px);
     /* width: 100%; */
-  }
+  /* }
 
   to {
     transform: translateY(0);
     /* width: 100%; */
-  }
+  /* } */
+/* } */
+
+/* .slideUp { */
+  /* animation-duration: 0.55s; */
+  /* animation-name: slideUp; */
+/* }   */
+
+.slide {
+  transition: transform 1s;
 }
 
-.slideUp {
-  animation-duration: 0.55s;
-  animation-name: slideUp;
+.slideOutLeft {
+  transform: translateX(-100vw);
 }
+
+.slideOutRight {
+  transform: translateX(100vw);
+}
+
+/* .slideInLeft {
+  transform: translateX(100vw);
+}
+
+.slideInRight {
+  transform: translateX(100vw);
+} */
 
 .overflow-hidden {
   overflow: hidden;

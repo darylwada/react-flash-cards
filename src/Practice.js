@@ -10,6 +10,7 @@ export default class Carousel extends Component {
       transition: null
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
   }
 
   toggleShowAnswer() {
@@ -19,18 +20,12 @@ export default class Carousel extends Component {
 
   handleCarouselControls(control) {
     const { cardList } = this.props
-    let { practiceIndex, showAnswer } = this.state
+    let { practiceIndex } = this.state
     if (control === 'next' && practiceIndex < cardList.length - 1) {
-      practiceIndex++
-      showAnswer = false
       this.setState({ transition: 'transition-next' })
-      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'next' }), 500)
     }
     if (control === 'prev' && practiceIndex > 0) {
-      practiceIndex--
-      showAnswer = false
       this.setState({ transition: 'transition-prev' })
-      setTimeout(() => this.setState({ practiceIndex, showAnswer, transition: 'prev' }), 500)
     }
   }
 
@@ -38,6 +33,22 @@ export default class Carousel extends Component {
     const $target = event.target.closest('.btn')
     if ($target.id === 'next' || $target.id === 'prev') this.handleCarouselControls($target.id)
     if ($target.id === 'show-answer') this.toggleShowAnswer()
+  }
+
+  handleTransitionEnd() {
+    const { transition } = this.state
+    let { practiceIndex, showAnswer } = this.state
+
+    if (transition === 'transition-next') {
+      practiceIndex++
+      showAnswer = false
+      this.setState({ practiceIndex, showAnswer, transition: 'next' })
+    }
+    if (transition === 'transition-prev') {
+      practiceIndex--
+      showAnswer = false
+      this.setState({ practiceIndex, showAnswer, transition: 'prev' })
+    }
   }
 
   render() {
@@ -57,7 +68,8 @@ export default class Carousel extends Component {
             <CarouselCards
               practiceCard={practiceCard}
               showAnswer={showAnswer}
-              transition={transition} />
+              transition={transition}
+              handleTransitionEnd={this.handleTransitionEnd} />
           </div>
           <a id="prev" className="carousel-control-prev fixed-width-100 btn">
             <i className="fas fa-chevron-left" />

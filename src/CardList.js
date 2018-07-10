@@ -4,7 +4,7 @@ import * as queryString from './query-string'
 export default class CardList extends Component {
   constructor(props) {
     super(props)
-    this.state = { transition: null, deleteIndex: null }
+    this.state = { transition: null, deleteIndex: null, offset: [] }
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -14,6 +14,15 @@ export default class CardList extends Component {
     this.setState({ transition: 'deleting', deleteIndex })
     setTimeout(() => deleteCard(deleteIndex), 500)
     setTimeout(() => this.setState({ transition: null }), 500)
+  }
+
+  componentDidMount() {
+    const offset = []
+    for (const key in this.refs) {
+      offset.push(this.refs[key].offsetTop)
+    }
+    this.setState({ offset })
+    console.log(this.refs)
   }
 
   render() {
@@ -31,7 +40,7 @@ export default class CardList extends Component {
               ? ' slideUp'
               : ''
             return (
-              <li className={'list-group-item mb-3 shadow-sm' + deleteClass + slideClass} key={index}>
+              <li ref={'card-' + index} className={'list-group-item mb-3 shadow-sm' + deleteClass + slideClass} key={index}>
                 <h5 className="card-title">{card.question}</h5>
                 <p className="card-body m-0 py-0">{card.answer}</p>
                 <div className="row no-gutters justify-content-end">
