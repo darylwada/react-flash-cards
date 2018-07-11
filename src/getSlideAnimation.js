@@ -1,4 +1,4 @@
-export default function setTransitionAnimation(transition) {
+export default function getSlideAnimation(transition) {
   if (transition === 'transition-next') {
     return ' slide slideOutLeft'
   }

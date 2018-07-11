@@ -1,20 +1,20 @@
 import React from 'react'
-import setTransitionAnimation from './setTransitionAnimation'
+import getSlideAnimation from './getSlideAnimation'
 
 export default function CarouselCards({ practiceCard, showAnswer, transition, handleTransitionEnd }) {
   const [ visibility, icon ] = showAnswer
-    ? [ ' open', 'fas fa-chevron-circle-right rotate down' ]
-    : [ ' ', 'fas fa-chevron-circle-right rotate' ]
-  const animationClass = setTransitionAnimation(transition)
-  console.log(animationClass)
+    ? [ ' inner open', 'fas fa-chevron-circle-right rotate down' ]
+    : [ ' inner', 'fas fa-chevron-circle-right rotate' ]
+  const animation = getSlideAnimation(transition)
+
   return (
-    <div className={'card p-3' + animationClass} onTransitionEnd={handleTransitionEnd}>
+    <div className={'card p-3' + animation} onTransitionEnd={handleTransitionEnd}>
       <h5 className="card-title">{practiceCard.question}</h5>
       <div id="show-answer" className="btn text-left mb-3">
         <i className={icon + ' mr-3'} /><span>Show Answer</span>
       </div>
       <div id="answer" className={'card-body py-0 wrap'}>
-          <p className={'inner mb-0' + visibility}>{practiceCard.answer}</p>
+        <p className={'mb-0' + visibility}>{practiceCard.answer}</p>
       </div>
     </div>
   )

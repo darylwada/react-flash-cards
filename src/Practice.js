@@ -52,7 +52,6 @@ export default class Carousel extends Component {
   }
 
   render() {
-    console.log(this.state)
     const { cardList } = this.props
     const { practiceIndex, showAnswer, transition } = this.state
     const practiceCard = cardList[practiceIndex]
