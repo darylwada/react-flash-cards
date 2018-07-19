@@ -76,7 +76,9 @@ export default class App extends Component {
   }
 
   renderPractice() {
-    return <Practice cardList={this.state.cards} />
+    return this.state.cards.length > 0
+      ? <Practice cardList={this.state.cards} />
+      : <CardListEmpty />
   }
 
   renderView() {
