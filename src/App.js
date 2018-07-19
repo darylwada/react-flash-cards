@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import Nav from './Nav'
-import Form from './Form'
-import CardList from './CardList'
-import CardListEmpty from './CardListEmpty'
-import Practice from './Practice'
-import parseHash from './parse-hash'
+import Nav from './containers/Nav'
+import Form from './views/Form'
+import CardList from './views/CardList'
+import CardListEmpty from './components/CardListEmpty'
+import Practice from './views/Practice'
+import parseHash from './util/parse-hash'
 
 export default class App extends Component {
   constructor(props) {

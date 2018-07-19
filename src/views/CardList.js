@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import * as queryString from './query-string'
-import getDeleteAnimation from './getDeleteAnimation'
+import * as queryString from '../util/query-string'
+import getDeleteAnimation from '../util/getDeleteAnimation'
 
 export default class CardList extends Component {
   constructor(props) {

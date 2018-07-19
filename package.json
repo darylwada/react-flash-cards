@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bundle": "browserify src/index.js -o src/main.js -t babelify",
-    "watch": "watchify -vd src/index.js -o src/main.js -t babelify & browser-sync start -s -c browser-sync.js",
+    "bundle": "browserify src/index.js -o public/main.js -t babelify",
+    "watch": "watchify -vd src/index.js -o public/main.js -t babelify & browser-sync start -s -c browser-sync.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

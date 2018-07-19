@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import getFormData from './getFormData'
+import getFormData from '../util/getFormData'
 
 export default class Form extends Component {
   constructor(props) {

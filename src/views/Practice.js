@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import CarouselCards from './CarouselCards'
+import CarouselCards from '../components/CarouselCards'
 
 export default class Carousel extends Component {
   constructor(props) {

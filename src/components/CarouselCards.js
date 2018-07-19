@@ -1,5 +1,5 @@
 import React from 'react'
-import getSlideAnimation from './getSlideAnimation'
+import getSlideAnimation from '../util/getSlideAnimation'
 
 export default function CarouselCards({ practiceCard, showAnswer, transition, handleTransitionEnd }) {
   const [ visibility, icon ] = showAnswer
