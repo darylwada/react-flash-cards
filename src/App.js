@@ -5,7 +5,6 @@ import CardList from './CardList'
 import CardListEmpty from './CardListEmpty'
 import Practice from './Practice'
 import parseHash from './parse-hash'
-import data from './data'
 
 export default class App extends Component {
   constructor(props) {
@@ -15,8 +14,7 @@ export default class App extends Component {
     this.state = {
       path,
       params,
-      // cards: JSON.parse(cards) || []
-      cards: data
+      cards: JSON.parse(cards) || []
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
