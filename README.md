@@ -1,7 +1,7 @@
 # Quiz Me
 A flash card app for people who learn by self-quizzing.
 
-https://darylwada.github.io/react-flash-cards/
+#### [Live Demo](https://darylwada.github.io/react-flash-cards/)
 
 ### Create, read, update, and delete flash cards.
 ![flash-cards-crud](https://user-images.githubusercontent.com/33441299/43624362-b6616ef8-969b-11e8-9c73-83bcc44efb6e.gif)
