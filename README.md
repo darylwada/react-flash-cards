@@ -14,11 +14,12 @@ A flash card app for people who learn by self-quizzing.
 - JavaScript
 - HTML5
 - CSS3
-- Bootstrap
+- Bootstrap 4
 
 ## Usage
 ```
 git clone https://github.com/darylwada/react-flash-cards.git
+cd react-flash-cards/
 npm install
 npm run watch
 ```
